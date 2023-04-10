@@ -15,7 +15,7 @@ def run_command(command):
     return result.stdout.decode('utf-8'), result.stderr.decode('utf-8')
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
-    bot.send_message(message.chat.id, " السلام عليكم أنا بوت منتجة الفيديوهات . فقط أرسل التصميم ( الغلاف)  ")
+    bot.send_message(message.chat.id, "  السلام عليكم أنا بوت منتجة الفيديوهات . فقط أرسل التصميم ( الغلاف) بدون ضغط \n\n Send without compression ")
     
 @bot.on_message(filters.private & filters.incoming & filters.document )
 def _telegram_file(client, message):
