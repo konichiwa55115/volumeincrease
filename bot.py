@@ -8,19 +8,35 @@ bot = Client(
 )
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
-    bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا ")
+    bot.send_message(message.chat.id, " السلام عليكم أنا بوت منتجة الفيديوهات . فقط أرسل التصميم ( الغلاف)  ")
     
+@bot.on_message(filters.private & filters.incoming & filters.image )
+def _telegram_file(client, message):
+  user_id = message.from_user.id
+  sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
+  file = message.audio
+  file_path = message.download(file_name="pic")
+    
+
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   user_id = message.from_user.id
-  sent_message = message.reply_text('جار التفريغ', quote=True)
+  sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
-  file_path = message.download(file_name="entry")
+  file_path = message.download(file_name="aud")
+def run_command(command):
+    result = subprocess.run(
+        command.split(),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    return result.stdout.decode('utf-8'), result.stderr.decode('utf-8')
 
-    # Execute speech.py script with entry file
-  subprocess.call(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', "./downloads/entry" , 'transcription.txt'])
+def start(update, context):
+    # Run the curl command
+    output, error = run_command('curl https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo -o /usr/bin/imagetovideo && chmod a+rx /usr/bin/imagetovideo && ln /usr/bin/imagetovideo /usr/bin/itv && itv')
     # Upload transcription file to user
-  with open('transcription.txt', 'rb') as f:
+  with open('resultx.mp4', 'rb') as f:
         bot.send_document(message.chat.id, f)
 
 bot.run()
