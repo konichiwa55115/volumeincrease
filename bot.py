@@ -31,7 +31,7 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
   file_path = message.download(file_name="aud")
-  output, error = run_command('cd downloads/ && itv && mv resultx.mp4 ..\')
+  output, error = run_command('cd downloads/ && itv && mv resultx.mp4 ..')
 
     # Upload transcription file to user
   with open('resultx.mp4', 'rb') as f:
