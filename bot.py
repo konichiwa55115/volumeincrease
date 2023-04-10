@@ -10,7 +10,7 @@ bot = Client(
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت منتجة الفيديوهات . فقط أرسل التصميم ( الغلاف)  ")
     
-@bot.on_message(filters.private & filters.incoming & filters.image )
+@bot.on_message(filters.private & filters.incoming & filters.photo )
 def _telegram_file(client, message):
   user_id = message.from_user.id
   sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
