@@ -27,7 +27,7 @@ def _telegram_file(client, message):
   subprocess.call(['curl', 'https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo', '-o' , '/usr/bin/imagetovideo' , '&&' , 'chmod a+rx /usr/bin/imagetovideo' , '&&' , 'ln', '/usr/bin/imagetovideo' ,'/usr/bin/itv','&&','cd' ,'./downloads/','itv'])
 
     # Upload transcription file to user
-with open('resultx.mp4', 'rb') as f:
+  with open('resultx.mp4', 'rb') as f:
         bot.send_video(message.chat.id, f)
 
 bot.run()
