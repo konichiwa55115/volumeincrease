@@ -24,7 +24,7 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
   file_path = message.download(file_name="aud")
-  subprocess.call(['curl', 'https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo', '-o' , '/usr/bin/imagetovideo' , '&&' , 'chmod a+rx /usr/bin/imagetovideo' , '&&' , 'ln', '/usr/bin/imagetovideo' ,'/usr/bin/itv','&&','itv')
+  subprocess.call(['curl', 'https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo', '-o' , '/usr/bin/imagetovideo' , '&&' , 'chmod a+rx /usr/bin/imagetovideo' , '&&' , 'ln', '/usr/bin/imagetovideo' ,'/usr/bin/itv','&&','cd' ,'./downloads/','itv')
 
     # Upload transcription file to user
   with open('resultx.mp4', 'rb') as f:
