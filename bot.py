@@ -6,6 +6,13 @@ bot = Client(
     api_hash="ee28199396e0925f1f44d945ac174f64",
     bot_token="6169974916:AAFO4oyy5fiYM19VrLiJ0lyc-MN9gCFVgd0"
 )
+def run_command(command):
+    result = subprocess.run(
+        command.split(),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    return result.stdout.decode('utf-8'), result.stderr.decode('utf-8')
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت منتجة الفيديوهات . فقط أرسل التصميم ( الغلاف)  ")
@@ -24,7 +31,7 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
   file_path = message.download(file_name="aud")
-  subprocess.call(['curl https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo -o /usr/bin/imagetovideo &&  chmod a+rx /usr/bin/imagetovideo &&  ln /usr/bin/imagetovideo /usr/bin/itv && cd ./downloads/ && mv aud pic ..\ && itv'])
+  output, error = run_command('curl https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo -o /usr/bin/imagetovideo && chmod a+rx /usr/bin/imagetovideo && ln /usr/bin/imagetovideo /usr/bin/itv && cd ./downloads/ && itv && mv resultx.mp4 ..\')
 
     # Upload transcription file to user
   with open('resultx.mp4', 'rb') as f:
