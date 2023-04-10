@@ -38,5 +38,6 @@ def _telegram_file(client, message):
         bot.send_video(message.chat.id, f)
   subprocess.call(['unlink','./downloads/pic'])
   subprocess.call(['unlink','./downloads/aud'])
+  subprocess.call(['unlink','resultx.mp4'])
 
 bot.run()
