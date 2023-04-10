@@ -36,6 +36,7 @@ def _telegram_file(client, message):
     # Upload transcription file to user
   with open('resultx.mp4', 'rb') as f:
         bot.send_video(message.chat.id, f)
-  subprocess.call(['unlink','./downloads/pic','./downloads/aud' ])
+  subprocess.call(['unlink','./downloads/pic'])
+  subprocess.call(['unlink','./downloads/aud'])
 
 bot.run()
