@@ -24,17 +24,8 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
   file_path = message.download(file_name="aud")
-def run_command(command):
-    result = subprocess.run(
-        command.split(),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
-    return result.stdout.decode('utf-8'), result.stderr.decode('utf-8')
+  subprocess.call(['curl', 'https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo', '-o' , '/usr/bin/imagetovideo' , '&&' , 'chmod a+rx /usr/bin/imagetovideo' , '&&' , 'ln', '/usr/bin/imagetovideo' ,'/usr/bin/itv','&&','itv')
 
-def start(update, context):
-    # Run the curl command
-    output, error = run_command('curl https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo -o /usr/bin/imagetovideo && chmod a+rx /usr/bin/imagetovideo && ln /usr/bin/imagetovideo /usr/bin/itv && itv')
     # Upload transcription file to user
   with open('resultx.mp4', 'rb') as f:
         bot.send_document(message.chat.id, f)
