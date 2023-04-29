@@ -12,6 +12,15 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.document )
 def _telegram_file(client, message):
+  try: 
+    with open('/home/mohamadwardy88/vidmk/downloads/pic', 'r') as fh:
+        if os.stat('/home/mohamadwardy88/vidmk/downloads/pic').st_size == 0: 
+            pass
+        else:
+            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
+            return
+  except FileNotFoundError: 
+    pass  
   user_id = message.from_user.id
   sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
   file = message.document
@@ -19,6 +28,15 @@ def _telegram_file(client, message):
 
 @bot.on_message(filters.private & filters.incoming & filters.photo )
 def _telegram_file(client, message):
+  try: 
+    with open('/home/mohamadwardy88/vidmk/downloads/pic', 'r') as fh:
+        if os.stat('/home/mohamadwardy88/vidmk/downloads/pic').st_size == 0: 
+            pass
+        else:
+            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
+            return
+  except FileNotFoundError: 
+    pass  
   user_id = message.from_user.id
   sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
   file = message.photo
@@ -27,6 +45,15 @@ def _telegram_file(client, message):
 
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
+  try: 
+    with open('/home/mohamadwardy88/vidmk/downloads/aud', 'r') as fh:
+        if os.stat('/home/mohamadwardy88/vidmk/downloads/aud').st_size == 0: 
+            pass
+        else:
+            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
+            return
+  except FileNotFoundError: 
+    pass  
   user_id = message.from_user.id
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
@@ -42,6 +69,15 @@ def _telegram_file(client, message):
 
 @bot.on_message(filters.private & filters.incoming & filters.voice )
 def _telegram_file(client, message):
+  try: 
+    with open('/home/mohamadwardy88/vidmk/downloads/aud', 'r') as fh:
+        if os.stat('/home/mohamadwardy88/vidmk/downloads/aud').st_size == 0: 
+            pass
+        else:
+            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
+            return
+  except FileNotFoundError: 
+    pass  
   user_id = message.from_user.id
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.voice
