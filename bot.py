@@ -14,9 +14,7 @@ def command1(bot,message):
 def _telegram_file(client, message):
   try: 
     with open('/home/mohamadwardy88/vidmk/downloads/pic', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/vidmk/downloads/pic').st_size == 0: 
-            pass
-        else:
+       
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
@@ -30,9 +28,7 @@ def _telegram_file(client, message):
 def _telegram_file(client, message):
   try: 
     with open('/home/mohamadwardy88/vidmk/downloads/pic', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/vidmk/downloads/pic').st_size == 0: 
-            pass
-        else:
+        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
@@ -47,9 +43,7 @@ def _telegram_file(client, message):
 def _telegram_file(client, message):
   try: 
     with open('/home/mohamadwardy88/vidmk/downloads/aud', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/vidmk/downloads/aud').st_size == 0: 
-            pass
-        else:
+       
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
@@ -71,9 +65,7 @@ def _telegram_file(client, message):
 def _telegram_file(client, message):
   try: 
     with open('/home/mohamadwardy88/vidmk/downloads/aud', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/vidmk/downloads/aud').st_size == 0: 
-            pass
-        else:
+        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
