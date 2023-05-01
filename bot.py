@@ -13,7 +13,7 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.document )
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/vidmk/downloads/pic', 'r') as fh:
+    with open("resultx.mp4, 'r') as fh:
        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
@@ -27,7 +27,7 @@ def _telegram_file(client, message):
 @bot.on_message(filters.private & filters.incoming & filters.photo )
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/vidmk/downloads/pic', 'r') as fh:
+    with open("resultx.mp4", 'r') as fh:
         
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
@@ -42,7 +42,7 @@ def _telegram_file(client, message):
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/vidmk/downloads/aud', 'r') as fh:
+    with open("resultx.mp4", 'r') as fh:
        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
@@ -64,7 +64,7 @@ def _telegram_file(client, message):
 @bot.on_message(filters.private & filters.incoming & filters.voice )
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/vidmk/downloads/aud', 'r') as fh:
+    with open('resultx.mp4', 'r') as fh:
         
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
