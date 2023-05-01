@@ -13,7 +13,7 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.document )
 def _telegram_file(client, message):
   try: 
-    with open("resultx.mp4, 'r') as fh:
+    with open("resultx.mp4", 'r') as fh:
        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
