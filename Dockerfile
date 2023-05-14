@@ -8,6 +8,9 @@ FROM python:3.9-buster
 RUN apt update && apt upgrade -y
 RUN apt install git curl python3-pip ffmpeg -y
 RUN apt install dos2unix
+RUN curl https://raw.githubusercontent.com/konichiwa55115/ImageToVideo/main/imagetovideo -o /usr/bin/imagetovideo
+RUN chmod a+rx /usr/bin/imagetovideo
+RUN ln /usr/bin/imagetovideo /usr/bin/itv
 
 # Updating Pip Packages
 RUN pip3 install -U pip
