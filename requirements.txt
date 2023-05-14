@@ -1,4 +1,3 @@
-https://github.com/konichiwa55115/ImageToVideo/archive/refs/heads/main.zip
 coloredlogs
 pillow
 watchdog
