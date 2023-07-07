@@ -17,7 +17,7 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.document | filters.photo)
 def _telegram_file(client, message):
   try: 
-    with open("resultx.mp4", 'r') as fh:
+    with open("mp4file.mp4", 'r') as fh:
        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
@@ -36,7 +36,7 @@ def _telegram_file(client, message):
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice )
 def _telegram_file(client, message):
   try: 
-    with open("resultx.mp4", 'r') as fh:
+    with open("mp4file.mp4", 'r') as fh:
        
             sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
             return
@@ -66,6 +66,36 @@ def _telegram_file(client, message):
   subprocess.call(['unlink',mp4file])
   subprocess.call(['unlink',"mod"+mp3file])
   subprocess.call(['unlink',file_path])
+
+@bot.on_message(filters.private & filters.incoming & filters.video )
+def _telegram_file(client, message):
+  try: 
+    with open("mp4file.mp4", 'r') as fh:
+       
+            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
+            return
+  except FileNotFoundError: 
+    pass  
+  user_id = message.from_user.id
+  sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
+  file = message.audio
+  global file_path
+  file_path = message.download(file_name="aud")
+  global mp3file
+  mp3file = "mp3file.mp3"
+  global mp4file
+  mp4file="mp4file.mp4" 
+  tempmp3 = "mod"+mp3file
+  cmd(f'ffmpeg -i {file_path} -q:a 0 -map a {mp3file} -y')
+  subprocess.call(['ffmpeg','-i',mp3file,'-af','arnndn=m=./rnnoise-models/beguiling-drafter-2018-08-30/bd.rnnn',tempmp3,'-y']) 
+  cmd(f'ffmpeg -i {file_path} -i {tempmp3} -c:v copy -map 0:v:0 -map 1:a:0 {mp4file}')
+  with open(mp4file, 'rb') as f:
+        bot.send_video(message.chat.id, f)
+  subprocess.call(['unlink',mp3file])
+  subprocess.call(['unlink',mp4file])
+  subprocess.call(['unlink',tempmp3])
+  subprocess.call(['unlink',file_path])
+
 
 
 
