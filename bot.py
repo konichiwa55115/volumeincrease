@@ -55,7 +55,7 @@ def _telegram_file(client, message):
   picture = "./downloads/pic"
   global res 
   subprocess.call(['ffmpeg','-i',file_path,'-af','arnndn=m=./rnnoise-models/beguiling-drafter-2018-08-30/bd.rnnn',"mod"+mp3file,'-y']) 
-  subprocess.call(['ffmpeg','-i',"mod"+mp3file,'-af', "volume=4",mp3file,'-y']) 
+  subprocess.call(['ffmpeg','-i',"mod"+mp3file,'-af', "volume=2",mp3file,'-y']) 
   cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i {mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 {mp4file}')
 
     # Upload transcription file to user
@@ -88,7 +88,8 @@ def _telegram_file(client, message):
   tempmp3 = "mod"+mp3file
   cmd(f'ffmpeg -i {file_path} -q:a 0 -map a {mp3file} -y')
   subprocess.call(['ffmpeg','-i',mp3file,'-af','arnndn=m=./rnnoise-models/beguiling-drafter-2018-08-30/bd.rnnn',tempmp3,'-y']) 
-  cmd(f'ffmpeg -i {file_path} -i {tempmp3} -c:v copy -map 0:v:0 -map 1:a:0 {mp4file}')
+  subprocess.call(['ffmpeg','-i',tempmp3,'-af', "volume=2",mp3file,'-y'])
+  cmd(f'ffmpeg -i {file_path} -i {mp3file} -c:v copy -map 0:v:0 -map 1:a:0 {mp4file}')
   with open(mp4file, 'rb') as f:
         bot.send_video(message.chat.id, f)
   subprocess.call(['unlink',mp3file])
