@@ -1,6 +1,8 @@
 from pyrogram import Client, filters
 import subprocess
 import os
+from os import system as cmd
+
 
 bot = Client(
     "myfirs",
@@ -44,20 +46,18 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
   global file_path
-  file_path = message.download(file_name="./downloads/")
-  filename = os.path.basename(file_path)
-  realname, ext = os.path.splitext(filename)
+  file_path = message.download(file_name="aud")
   global mp3file
-  mp3file = realname+".mp3"
+  mp3file = "mp3file.mp3"
   global mp4file
-  mp4file=realname+".mp4"
+  mp4file="mp4file.mp4"
   global picture
   picture = "./downloads/pic"
   global res 
-  res = '1920:1080'
   subprocess.call(['ffmpeg','-i',file_path,'-af','arnndn=m=./rnnoise-models/beguiling-drafter-2018-08-30/bd.rnnn',"mod"+mp3file,'-y']) 
   subprocess.call(['ffmpeg','-i',"mod"+mp3file,'-af', "volume=4",mp3file,'-y']) 
-  subprocess.call(['ffmpeg', '-r', '1' ,'-loop', '1', '-y', '-i', f'{picture}' ,'-i', f'{mp3file}', '-c:v', 'libx264', '-tune', 'stillimage', '-c:a', 'copy', '-shortest', f'{res}', f'{mp4file}'])
+  cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i {mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 {mp4file}')
+
     # Upload transcription file to user
   with open(mp4file, 'rb') as f:
         bot.send_video(message.chat.id, f)
