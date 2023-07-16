@@ -51,7 +51,7 @@ def _telegram_file(client, message):
   global mp4file
   mp4file="mp4file.mp4"
   global picture
-  picture = "./downloads/pic"
+  picture = "./picy/pic"
   global res 
   cmd(f'ffmpeg -i {file_path} -af arnndn=m=./rnnoise-models/somnolent-hogwash-2018-09-01/sh.rnnn ./downloads/"mod"+{mp3file} -y')
   cmd(f'ffmpeg -i ./downloads/"mod"+{mp3file} -af volume=2 ./downloads/{mp3file} -y ')
