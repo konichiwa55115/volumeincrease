@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 import subprocess
 import os
 from os import system as cmd
+import shutil
 
 
 bot = Client(
@@ -16,13 +17,11 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.document | filters.photo)
 def _telegram_file(client, message):
-  try: 
-    with open("mp4file.mp4", 'r') as fh:
-       
-            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
-            return
-  except FileNotFoundError: 
-    pass  
+  if os.path.isdir("./downloads/") :
+        sent_message = message.reply_text('هناك عملية يتم الآن . أرسل الصوتية  بعد مدة من فضلك', quote=True)
+        return
+  else :
+        pass
   user_id = message.from_user.id
   sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
   file = message.document
@@ -35,13 +34,11 @@ def _telegram_file(client, message):
 
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice )
 def _telegram_file(client, message):
-  try: 
-    with open("mp4file.mp4", 'r') as fh:
-       
-            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
-            return
-  except FileNotFoundError: 
-    pass  
+  if os.path.isdir("./downloads/") :
+        sent_message = message.reply_text('هناك عملية يتم الآن . أرسل الصوتية  بعد مدة من فضلك', quote=True)
+        return
+  else :
+        pass
   user_id = message.from_user.id
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
@@ -54,28 +51,25 @@ def _telegram_file(client, message):
   global picture
   picture = "./downloads/pic"
   global res 
-  subprocess.call(['ffmpeg','-i',file_path,'-af','arnndn=m=./rnnoise-models/beguiling-drafter-2018-08-30/bd.rnnn',"mod"+mp3file,'-y']) 
-  subprocess.call(['ffmpeg','-i',"mod"+mp3file,'-af', "volume=2",mp3file,'-y']) 
-  cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i {mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 {mp4file}')
+  cmd(f'ffmpeg -i {file_path} -af arnndn=m=./rnnoise-models/somnolent-hogwash-2018-09-01/sh.rnnn ./downloads/"mod"+{mp3file} -y')
+  cmd(f'ffmpeg -i ./downloads/"mod"+{mp3file} -af volume=2 ./downloads/{mp3file} -y ')
+  cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i ./downloads/{mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 ./downloads/{mp4file}')
 
     # Upload transcription file to user
-  with open(mp4file, 'rb') as f:
+  with open(f'./downloads/{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
-  subprocess.call(['unlink',picture])
-  subprocess.call(['unlink',mp3file])
-  subprocess.call(['unlink',mp4file])
-  subprocess.call(['unlink',"mod"+mp3file])
-  subprocess.call(['unlink',file_path])
+  shutil.rmtree('./downloads/')
+
+  
 
 @bot.on_message(filters.private & filters.incoming & filters.video )
 def _telegram_file(client, message):
-  try: 
-    with open("mp4file.mp4", 'r') as fh:
-       
-            sent_message = message.reply_text('هناك منتجة تتم الآن . أرسل التصميم بعد مدة من فضلك', quote=True)
-            return
-  except FileNotFoundError: 
-    pass  
+  if os.path.isdir("./downloads/") :
+        sent_message = message.reply_text('هناك عملية يتم الآن . أرسل التصميم  بعد مدة من فضلك', quote=True)
+        return
+  else :
+        pass
+  
   user_id = message.from_user.id
   sent_message = message.reply_text('[جار منتجة الفيديو', quote=True)
   file = message.audio
@@ -86,18 +80,13 @@ def _telegram_file(client, message):
   global mp4file
   mp4file="mp4file.mp4" 
   tempmp3 = "mod"+mp3file
-  cmd(f'ffmpeg -i {file_path} -q:a 0 -map a {mp3file} -y')
-  subprocess.call(['ffmpeg','-i',mp3file,'-af','arnndn=m=./rnnoise-models/beguiling-drafter-2018-08-30/bd.rnnn',tempmp3,'-y']) 
-  subprocess.call(['ffmpeg','-i',tempmp3,'-af', "volume=2",mp3file,'-y'])
-  cmd(f'ffmpeg -i {file_path} -i {mp3file} -c:v copy -map 0:v:0 -map 1:a:0 {mp4file}')
-  with open(mp4file, 'rb') as f:
+  cmd(f'ffmpeg -i {file_path} -q:a 0 -map a ./downloads/{mp3file} -y')
+  cmd(f'ffmpeg -i ./downloads/{mp3file} -af arnndn=m=./rnnoise-models/somnolent-hogwash-2018-09-01/sh.rnnn ./downloads/{tempmp3} -y ')
+  cmd(f'ffmpeg -i ./downloads/{tempmp3} -af volume=2 ./downloads/{mp3file} -y ')
+  cmd(f'ffmpeg -i {file_path} -i ./downloads{mp3file} -c:v copy -map 0:v:0 -map 1:a:0 ./downloads/{mp4file} -y')
+  with open(f'./downloads/{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
-  subprocess.call(['unlink',mp3file])
-  subprocess.call(['unlink',mp4file])
-  subprocess.call(['unlink',tempmp3])
-  subprocess.call(['unlink',file_path])
-
-
+  shutil.rmtree('./downloads/')
 
 
 
