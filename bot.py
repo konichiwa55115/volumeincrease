@@ -26,7 +26,7 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
   file = message.document
   file_path = message.download(file_name="pic")
-  cmd(f'mkdir picy && mv './downloads/pic' ./picy')
+  cmd(f'mkdir picy && mv ./downloads/pic ./picy')
   global picture
   pictrue="./picy/pic"
   shutil.rmtree('./downloads/')
