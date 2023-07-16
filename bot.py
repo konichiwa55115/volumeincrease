@@ -26,10 +26,12 @@ def _telegram_file(client, message):
   sent_message = message.reply_text('الآن أرسل الصوتية', quote=True)
   file = message.document
   file_path = message.download(file_name="pic")
+  cmd(f'mkdir picy && mv './downloads/pic' ./picy')
   global picture
-  pictrue=file_path
+  pictrue="./picy/pic"
+  shutil.rmtree('./downloads/')
 
-
+    
     
 
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice )
@@ -59,6 +61,8 @@ def _telegram_file(client, message):
   with open(f'./downloads/{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
   shutil.rmtree('./downloads/')
+  shutil.rmtree('./picy/')
+
 
   
 
@@ -87,6 +91,7 @@ def _telegram_file(client, message):
   with open(f'./downloads/{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
   shutil.rmtree('./downloads/')
+
 
 
 
