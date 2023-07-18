@@ -88,10 +88,11 @@ def _telegram_file(client, message):
   cmd(f'ffmpeg -i {file_path} -q:a 0 -map a ./downloads/{mp3file} -y')
   cmd(f'ffmpeg -i ./downloads/{mp3file} -af arnndn=m=./rnnoise-models/somnolent-hogwash-2018-09-01/sh.rnnn ./downloads/{tempmp3} -y ')
   cmd(f'ffmpeg -i ./downloads/{tempmp3} -af volume=2 ./downloads/{mp3file} -y ')
-  cmd(f'ffmpeg -i {file_path} -i ./downloads/{mp3file} -c:v copy -map 0:v:0 -map 1:a:0 ./downloads/{mp4file} -y')
+  cmd(f'ffmpeg -i {file_path} -i ./downloads/{mp3file} -c:v copy -map 0:v:0 -map 1:a:0 {mp4file} -y')
   with open(f'{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
   shutil.rmtree('./downloads/')
+  cmd(f'rm {mp4file}')
 
 
 
