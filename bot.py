@@ -55,13 +55,14 @@ def _telegram_file(client, message):
   global res 
   cmd(f'ffmpeg -i {file_path} -af arnndn=m=./rnnoise-models/somnolent-hogwash-2018-09-01/sh.rnnn ./downloads/"mod"+{mp3file} -y')
   cmd(f'ffmpeg -i ./downloads/"mod"+{mp3file} -af volume=2 ./downloads/{mp3file} -y ')
-  cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i ./downloads/{mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 ./downloads/{mp4file}')
+  cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i ./downloads/{mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 {mp4file}')
 
     # Upload transcription file to user
   with open(f'./downloads/{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
   shutil.rmtree('./downloads/')
   shutil.rmtree('./picy/')
+  cmd(f'rm {mp4file}')
 
 
   
