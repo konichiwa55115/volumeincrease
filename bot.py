@@ -58,7 +58,7 @@ def _telegram_file(client, message):
   cmd(f'ffmpeg -r 1 -loop 1 -y -i {picture} -i ./downloads/{mp3file} -c:v libx264 -tune stillimage -c:a copy -shortest -vf scale=1920:1080 {mp4file}')
 
     # Upload transcription file to user
-  with open(f'./downloads/{mp4file}', 'rb') as f:
+  with open(f'{mp4file}', 'rb') as f:
         bot.send_video(message.chat.id, f)
   shutil.rmtree('./downloads/')
   shutil.rmtree('./picy/')
