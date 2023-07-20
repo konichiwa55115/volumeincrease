@@ -10,4 +10,4 @@ RUN cd /
 RUN pip3 install -U -r requirements.txt
 RUN git clone https://github.com/konichiwa55115/vidmk /LazyDeveloper && cd /LazyDeveloper && git clone https://github.com/GregorR/rnnoise-models&& cd /
 WORKDIR /LazyDeveloper
-CMD ["/bin/python3", "/LazyDeveloper/bot.py"]
+CMD ["python3", "/LazyDeveloper/bot.py"]
