@@ -9,8 +9,8 @@ COPY requirements.txt /requirements.txt
 RUN cd /
 RUN pip3 install -U -r requirements.txt
 RUN mkdir /LazyDeveloper
-WORKDIR /LazyDeveloper
 RUN cd /LazyDeveloper && git clone https://github.com/GregorR/rnnoise-models&& cd /
+WORKDIR /LazyDeveloper
 COPY start.sh /start.sh
 RUN dos2unix /start.sh
 CMD ["/bin/bash", "/start.sh"]
